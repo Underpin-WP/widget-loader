@@ -14,7 +14,7 @@ the render, and storage of widget data
 This plugin uses a built-in autoloader, so as long as it is required _before_
 Underpin, it should work as-expected.
 
-`require_once(__DIR__ . '/underpin-widgets/widgets.php');`
+`require_once(__DIR__ . '/underpin-widgets/index.php');`
 
 ## Setup
 
