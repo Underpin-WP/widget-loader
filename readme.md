@@ -1,6 +1,7 @@
 # Underpin Widget Loader
 
-Loader That assists with adding GDPR-compliant widgets to a WordPress website.
+Loader That assists with adding widgets to a WordPress website. It uses Underpin's built-in fields API to handle
+the render, and storage of widget data
 
 ## Installation
 
@@ -26,11 +27,31 @@ A very basic example could look something like this.
 
 ```php
 // Register widget
-underpin()->widgets()->add( 'widget', [
-	'id'                  => 'example-widget',                    // required
-	'name'                => __( 'translate-able name', 'domain' ), // required
-	'get_data_callback'   => '__return_empty_array',                // Required. See Widget::get_data
-	'get_items_callback'  => '__return_true',                       // Required. See Widget::get_items
+underpin()->widgets()->add( 'hello-world-widget', [
+	'name'                => underpin()->__( 'Hello World Widget' ),                               // Required. The name of the widget.
+	'id_base'             => 'widget_name',                                                        // Required. The ID.
+	'description'         => underpin()->__( 'Displays hello to a specified name on your site.' ), // Widget description.
+	'widget_options'      => [                                                                     // Options to pass to widget. See wp_register_sidebar_widget
+		'classname' => 'test_widget',
+	],
+	'get_fields_callback' => function ( $fields, \WP_Widget $widget ) {                            // Fetch, and set settings fields.
+		$name = isset( $fields['name'] ) ? esc_html( $fields['name'] ) : 'world';
+
+		return [
+			new \Underpin\Factories\Settings_Fields\Text( $name, [
+				'name'        => $widget->get_field_name( 'name' ), // See WP_Widget get_field_name
+				'id'          => $widget->get_field_id( 'name' ),   // See WP_Widget get_field_id
+				'setting_key' => 'name',                            // Must match field name and field ID
+				'description' => underpin()->__( 'Optional. Specify the person to say hello to. Default "world".' ),
+				'label'       => underpin()->__( 'Name' ),
+			] ),
+		];
+	},
+	'render_callback'    => function ( $instance, $fields ) {                                      // Render output
+		$name = ! empty( $fields['name'] ) ? esc_html( $fields['name'] ) : 'world';
+
+		echo underpin()->__( sprintf( 'Hello, %s!', $name ) );
+	},
 ] );
 ```
 

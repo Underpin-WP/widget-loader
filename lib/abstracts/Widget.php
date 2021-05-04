@@ -10,6 +10,7 @@
 namespace Underpin_Widgets\Abstracts;
 
 
+use Underpin\Abstracts\Settings_Field;
 use Underpin\Traits\Feature_Extension;
 use Underpin\Traits\Underpin_Templates;
 use function Underpin\underpin;
@@ -152,5 +153,9 @@ abstract class Widget extends \WP_Widget {
 	 */
 	protected function get_template_group() {
 		return 'widget';
+	}
+
+	protected function get_template_root_path() {
+		return UNDERPIN_WIDGETS_ROOT_DIR . 'templates';
 	}
 }

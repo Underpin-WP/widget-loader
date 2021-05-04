@@ -14,7 +14,7 @@
   },
   "autoload": {
     "files": [
-      "widgets.php"
+      "index.php"
     ]
   }
 }
