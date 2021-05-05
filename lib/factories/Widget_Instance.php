@@ -27,7 +27,7 @@ class Widget_Instance extends Widget {
 		return $this->set_callable( $this->get_fields_callback, $values, $this );
 	}
 
-	public function widget( $args, $widget_args = 1 ) {
+	public function display_callback( $args, $widget_args = 1 ) {
 		return $this->set_callable( $this->display_callback, $args, $widget_args );
 	}
 
