@@ -10,7 +10,6 @@
     }
   ],
   "require": {
-    "underpin/underpin": "1.2.*",
     "underpin/logger-loader": "^1.0"
   },
   "autoload": {
