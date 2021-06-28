@@ -47,7 +47,7 @@ underpin()->widgets()->add( 'hello-world-widget', [
 			] ),
 		];
 	},
-	'render_callback'    => function ( $instance, $fields ) {                                      // Render output
+	'display_callback'    => function ( $instance, $fields ) {                                      // Render output
 		$name = ! empty( $fields['name'] ) ? esc_html( $fields['name'] ) : 'world';
 
 		echo underpin()->__( sprintf( 'Hello, %s!', $name ) );
