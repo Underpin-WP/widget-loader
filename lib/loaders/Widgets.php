@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Underpin\Abstracts\Registries\Loader_Registry;
+use Underpin\Abstracts\Registries\Object_Registry;
 use WP_Error;
 use WP_Widget;
 use function Underpin\underpin;
@@ -18,7 +18,7 @@ use function Underpin\underpin;
  * @since   1.0.0
  * @package Underpin\Registries\Loaders
  */
-class Widgets extends Loader_Registry {
+class Widgets extends Object_Registry {
 
 	/**
 	 * @inheritDoc
