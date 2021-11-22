@@ -16,7 +16,7 @@ Underpin::attach( 'setup', new \Underpin\Factories\Observer( 'widgets', [
 	require_once( UNDERPIN_WIDGETS_ROOT_DIR . 'lib/loaders/Widgets.php' );
 	require_once( UNDERPIN_WIDGETS_ROOT_DIR . 'lib/factories/Widget_Instance.php' );
 	$plugin->loaders()->add( 'widgets', [
-		'registry' => 'Underpin_Widgets\Loaders\Widgets',
+		'class' => 'Underpin_Widgets\Loaders\Widgets',
 	] );
 	},
 ] ) );
