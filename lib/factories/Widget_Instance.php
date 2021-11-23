@@ -1,10 +1,10 @@
 <?php
 
-namespace Underpin_Widgets\Factories;
+namespace Underpin\Widgets\Factories;
 
 
 use Underpin\Traits\Instance_Setter;
-use Underpin_Widgets\Abstracts\Widget;
+use Underpin\Widgets\Abstracts\Widget;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
