@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! isset( $template ) || ! $template instanceof \Underpin_Widgets\Abstracts\Widget ) {
+if ( ! isset( $template ) || ! $template instanceof \Underpin\Widgets\Abstracts\Widget ) {
 	return;
 }
 

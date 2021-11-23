@@ -7,13 +7,12 @@
  */
 
 
-namespace Underpin_Widgets\Abstracts;
+namespace Underpin\Widgets\Abstracts;
 
 
 use Underpin\Abstracts\Settings_Field;
-use Underpin\Traits\Feature_Extension;
-use Underpin\Traits\Underpin_Templates;
-use function Underpin\underpin;
+use Underpin\Traits\Underpin\Templates;
+use Underpin\Loaders\Logger;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -27,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package Underpin\Abstracts
  */
 abstract class Widget extends \WP_Widget {
-	use Underpin_Templates;
+	use Underpin\Templates;
 
 	public $description = '';
 
@@ -45,7 +44,7 @@ abstract class Widget extends \WP_Widget {
 	 * @inheritDoc
 	 */
 	public function widget( $args, $instance ) {
-		underpin()->logger()->log(
+		Logger::log(
 			'error',
 			'widget_not_set',
 			'The widget ' . $this->name . ' must extend extend the widget method.'
@@ -72,7 +71,7 @@ abstract class Widget extends \WP_Widget {
 		$fields = $this->get_fields( $instance );
 		// If something went wrong, log and return.
 		if ( is_wp_error( $fields ) ) {
-			underpin()->logger()->log_wp_error(
+			Logger::log_wp_error(
 				'error',
 				$fields
 			);
@@ -96,7 +95,7 @@ abstract class Widget extends \WP_Widget {
 
 		// If something went wrong, log and return.
 		if ( is_wp_error( $fields ) ) {
-			underpin()->logger()->log_wp_error(
+			Logger::log_wp_error(
 				'error',
 				$fields
 			);
@@ -123,7 +122,7 @@ abstract class Widget extends \WP_Widget {
 		}
 
 		if ( $errors->has_errors() ) {
-			underpin()->logger()->log(
+			Logger::log(
 				'error',
 				'failed_to_save_widget_settings',
 				'Failed to save widget settings',

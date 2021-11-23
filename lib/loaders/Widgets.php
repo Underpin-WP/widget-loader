@@ -1,15 +1,16 @@
 <?php
 
-namespace Underpin_Widgets\Loaders;
+namespace Underpin\Widgets\Loaders;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 use Underpin\Abstracts\Registries\Object_Registry;
+use Underpin\Loaders\Logger;
 use WP_Error;
 use WP_Widget;
-use function Underpin\underpin;
+
 
 /**
  * Class Widgets
@@ -23,9 +24,9 @@ class Widgets extends Object_Registry {
 	/**
 	 * @inheritDoc
 	 */
-	protected $abstraction_class = 'Underpin_Widgets\Abstracts\Widget';
+	protected $abstraction_class = 'Underpin\Widgets\Abstracts\Widget';
 
-	protected $default_factory = 'Underpin_Widgets\Factories\Widget_Instance';
+	protected $default_factory = 'Underpin\Widgets\Factories\Widget_Instance';
 
 	/**
 	 * @inheritDoc
@@ -42,7 +43,7 @@ class Widgets extends Object_Registry {
 		if ( true === $valid ) {
 			add_action( 'widgets_init', function () use ( $key ) {
 				register_widget( $this->get( $key ) );
-				underpin()->logger()->log(
+				Logger::log(
 					'notice',
 					'widget_registered_successfully',
 					'A widget was Was successfully registered.',
